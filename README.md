@@ -1,3 +1,3 @@
-#### Side project for a MERN E-Commerce. For learning purposes.
+#### Side project build for a MERN E-Commerce.
 
-#### In progress.
+#### Currently in progress.
