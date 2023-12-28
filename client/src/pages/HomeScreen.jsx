@@ -1,34 +1,33 @@
-import { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
-import Product from '../components/Product';
-import axios from 'axios';
+import { Row, Col } from "react-bootstrap";
+import Product from "../components/Product";
+import { useGetProductsQuery } from "../redux/slices/productsApiSlice";
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get('/api/products');
-      setProducts(data);
-    }
-    
-    fetchProducts();
-  }, [])
+  const { data: products, isLoading, isError } = useGetProductsQuery();
 
   return (
     <>
-        <h1>Latest Products</h1>
-        <Row>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : isError ? (
+        <div>{isError?.data?.message || isError.error}</div>
+      ) : (
+        <>
+          <Row>
             {products.map((product) => {
-                return (
+              return (
                 <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product {...product} />
+                  <Product {...product} />
                 </Col>
-                )
+              );
             })}
-        </Row>
-    </>
-  )
-}
+          </Row>
+        </>
+      )}
 
-export default HomeScreen
+      <h1>Latest Products</h1>
+    </>
+  );
+};
+
+export default HomeScreen;
