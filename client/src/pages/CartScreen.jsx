@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import Message from "../components/Message";
+import { addToCart } from "../redux/slices/cartSlice";
 
 const CartScreen = () => {
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ const CartScreen = () => {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  //   console.log(cartItems);
+
+  const addToCartHandler = async (product, qty) => {
+    dispatch(addToCart({ ...product, qty }));
+  };
 
   return (
     <Row>
@@ -40,12 +44,16 @@ const CartScreen = () => {
                   <Col md={3}>
                     <Link to={`/product/${item._id}`}>{item.name}</Link>
                   </Col>
-                  <Col md={2} className="text-start">${item.price}</Col>
+                  <Col md={2} className="text-start">
+                    ${item.price}
+                  </Col>
                   <Col md={2}>
                     <Form.Control
                       as="select"
                       value={item.qty}
-                      onChange={(e) => {}}
+                      onChange={(e) =>
+                        addToCartHandler(item, Number(e.target.value))
+                      }
                       style={{ cursor: "pointer" }}
                     >
                       {[...Array(item.countInStock).keys()].map((x) => (
@@ -60,8 +68,8 @@ const CartScreen = () => {
                     </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type='button' variant='light'>
-                        <FaTrash />
+                    <Button type="button" variant="light">
+                      <FaTrash />
                     </Button>
                   </Col>
                 </Row>
@@ -69,6 +77,31 @@ const CartScreen = () => {
             ))}
           </ListGroup>
         )}
+      </Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h2 className="text-center">
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
+              </h2>
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item className="mx-auto">
+              <Button
+                type="button"
+                className="btn-block"
+                disabled={cartItems.length === 0}
+              >
+                Proceed To Checkout
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
       </Col>
     </Row>
   );
