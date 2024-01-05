@@ -8,6 +8,7 @@ import './assets/styles/bootstrap.custom.css'
 import './assets/styles/index.css'
 import HomeScreen from './pages/HomeScreen.jsx'
 import ProductScreen from './pages/ProductScreen.jsx'
+import CartScreen from './pages/CartScreen.jsx';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/product/:id',
         element: <ProductScreen />
+      },
+      {
+        path: '/cart',
+        element: <CartScreen />
       },
     ]
   }
