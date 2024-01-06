@@ -15,7 +15,7 @@ const Header = () => {
           <LinkContainer to="/">
             <Navbar.Brand>
               <img src={logo} alt="brand-logo" />
-              ProShop
+              ProductStore
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,7 +26,7 @@ const Header = () => {
                   <FaShoppingCart /> Cart
                   {
                     cartItems.length > 0 && (
-                      <Badge pill bg='success' style={{ marginLeft: '5px' }}>
+                      <Badge pill bg='info' style={{ marginLeft: '5px' }}>
                         { cartItems.reduce((acc, item) => acc + item.qty, 0) }
                       </Badge>
                     )

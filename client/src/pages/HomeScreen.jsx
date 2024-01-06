@@ -9,6 +9,7 @@ const HomeScreen = () => {
 
   return (
     <>
+      <h1>Latest Products</h1>
       {isLoading ? (
         <Loader />
       ) : isError ? (
@@ -28,8 +29,6 @@ const HomeScreen = () => {
           </Row>
         </>
       )}
-
-      <h1>Latest Products</h1>
     </>
   );
 };
