@@ -82,15 +82,14 @@ const loginUser = asyncHandler(async (req, res) => {
     res.status(401);
     throw new Error("Invalid email or password");
   }
-
-  res.send("login auth user");
 });
 
 // @desc    Logout user / Clear cookie
 // @route   POST /api/users/logout
 // @access  Private
 const logoutUser = asyncHandler(async (req, res) => {
-  res.send("logout user");
+  res.clearCookie('jwt');
+  res.status(200).json({ message: 'Logged out successfully.' });
 });
 
 export {
