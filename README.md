@@ -7,7 +7,7 @@ In the backend, Express.js server is integrated with MongoDB as a database. Mong
 
 Postman used for testing API endpoints.
 
-#### This build is currently in progress.
+* ### This build is currently in progress.
 
 ## Screenshots of the Application
 
