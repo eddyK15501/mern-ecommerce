@@ -3,6 +3,21 @@
 ## Description
 MERN E-Commerce application. Vite React.js utilized in the frontend. Redux Toolkit slices created for managing state across components. React Bootstrap brought in as a CSS framework for a faster and more streamlined UI development process. 
 
-In the backend, Express.js server is being integrated with MongoDB as a database. Mongoose.js is being connected as an ODM. JSON Web Token applied during login for user session authentication. Middlewares created for protecting routes by verifying users, as well as handling asynchronous requests and responses.
+In the backend, Express.js server is integrated with MongoDB as a database. Mongoose.js connected as an ODM. JSON Web Token applied during login for user session authentication. Middlewares created for protecting routes by verifying users, as well as handling asynchronous requests and responses.
+
+Postman used for testing API endpoints.
 
 #### This build is currently in progress.
+
+## Screenshots of the Application
+
+* #### Homepage
+
+<img src="https://private-user-images.githubusercontent.com/88423414/295406124-56019c71-da4b-4fe9-a428-52a852175353.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDQ4NTMyNzcsIm5iZiI6MTcwNDg1Mjk3NywicGF0aCI6Ii84ODQyMzQxNC8yOTU0MDYxMjQtNTYwMTljNzEtZGE0Yi00ZmU5LWE0MjgtNTJhODUyMTc1MzUzLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTEwVDAyMTYxN1omWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWUyNmNiMDgxODdmYTFiMGUyMGI5ZGU4OTM1NGE1ZmIzOGUzZGI1MGU3ZGZjMGYzNmIxMWJlZWNiMTQzMjQxNzUmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.7aDjzrgJl31gSFVca_6wNNKiDW-4k9Iy0JMe36kjV_o" />
+
+* #### Single Product Page
+
+<img src="https://private-user-images.githubusercontent.com/88423414/295406177-e9270567-301b-444f-bfdd-b3cf43b082b7.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDQ4NTMyODUsIm5iZiI6MTcwNDg1Mjk4NSwicGF0aCI6Ii84ODQyMzQxNC8yOTU0MDYxNzctZTkyNzA1NjctMzAxYi00NDRmLWJmZGQtYjNjZjQzYjA4MmI3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMTAlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTEwVDAyMTYyNVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTIzMmNiMzk1ZWEwY2ViZTg2N2E2NTQ3NTkwNjJjZDgxZTI1ZGM3OWQyMmE4NjMyNTFjMDRjNDVjMTY3NDZhMmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.1tEImMH03L29w7umTrms0Key3kJxBN3CwBARaGN2QEw" />
+
+## License
+* #### This project is licensed under the terms of the [MIT License](./LICENSE).
