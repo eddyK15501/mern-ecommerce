@@ -17,5 +17,7 @@ export const productsApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
+// Add "use" to the front of the builder endpoint that is being exported.
+// Along with whether it is a query or mutation, at the end of it.
 export const { useGetProductsQuery, useGetProductDetailsQuery } =
   productsApiSlice;
