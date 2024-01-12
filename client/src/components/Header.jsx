@@ -1,15 +1,30 @@
+import { useNavigate } from "react-router-dom";
 import { Badge, Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useLogoutMutation } from "../redux/slices/usersApiSlice";
+import { removeCredentials } from "../redux/slices/authSlice";
 import logo from "../assets/logo.png";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const { userInfo } = useSelector((state) => state.auth);
 
-  const logoutHandler = () => {
-    console.log("logout");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutUser] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      // Return RTK Query mutation promise with .unwrap()
+      await logoutUser().unwrap();
+      dispatch(removeCredentials());
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -27,6 +42,7 @@ const Header = () => {
             <Nav className="ms-auto">
               {userInfo ? (
                 <NavDropdown
+                  className="me-2"
                   title="Menu"
                   id="menu"
                   drop="down-centered"
@@ -39,7 +55,7 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to="/login">
+                <LinkContainer className="me-2" to="/login">
                   <Nav.Link href="/login">
                     <FaUser /> Sign In
                   </Nav.Link>
