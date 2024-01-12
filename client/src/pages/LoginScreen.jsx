@@ -21,12 +21,24 @@ const LoginScreen = () => {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || '/';
-  console.log(redirect);
+  const redirect = sp.get("redirect") || "/";
 
-  const submitHandler = (e) => {
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [userInfo, redirect, navigate]);
+
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit");
+    try {
+      const response = await login({ email, password }).unwrap();
+      console.log(response);
+      dispatch(setCredentials({ ...response }));
+      navigate(redirect);
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return (
@@ -54,14 +66,24 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type="submit" variant="primary" className="mt-2">
+        <Button
+          type="submit"
+          variant="primary"
+          className="mt-2"
+          disabled={isLoading}
+        >
           Sign In
         </Button>
+
+        {isLoading && <Loader />}
       </Form>
 
       <Row className="py-3">
         <Col>
-          Don&apos;t have an account? <Link to="/register">Register</Link>
+          Don&apos;t have an account?{" "}
+          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+            Register
+          </Link>
         </Col>
       </Row>
     </FormContainer>
