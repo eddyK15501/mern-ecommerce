@@ -113,7 +113,7 @@ const ProductScreen = () => {
                   </ListGroup.Item>
                 )}
 
-                <ListGroup.Item>
+                <ListGroup.Item className="mx-auto">
                   <Button
                     className="btn-block"
                     type="button"
