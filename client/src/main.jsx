@@ -11,6 +11,7 @@ import ProductScreen from "./pages/ProductScreen.jsx";
 import CartScreen from "./pages/CartScreen.jsx";
 import LoginScreen from "./pages/LoginScreen.jsx";
 import RegisterScreen from "./pages/RegisterScreen.jsx";
+import ShippingScreen from "./pages/ShippingScreen.jsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <RegisterScreen />,
+      },
+      {
+        path: "/shipping",
+        element: <ShippingScreen />,
       },
     ],
   },
