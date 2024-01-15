@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import FormContainer from "../components/FormContainer";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { saveShippingAddress } from "../redux/slices/cartSlice";
 
 const ShippingScreen = () => {
   const [address, setAddress] = useState("");
@@ -8,9 +11,16 @@ const ShippingScreen = () => {
   const [zipCode, setZipCode] = useState("");
   const [country, setCountry] = useState("");
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("submit");
+    dispatch(saveShippingAddress({ address, city, zipCode, country }));
+    navigate("/payment");
   };
 
   return (
@@ -26,7 +36,6 @@ const ShippingScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="city" className="my-2">
           <Form.Label>City</Form.Label>
           <Form.Control
@@ -36,7 +45,6 @@ const ShippingScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="zip-code" className="my-2">
           <Form.Label>Zip Code</Form.Label>
           <Form.Control
@@ -46,7 +54,6 @@ const ShippingScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="country" className="my-2">
           <Form.Label>Country</Form.Label>
           <Form.Control
@@ -56,6 +63,9 @@ const ShippingScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
+        <Button type="submit" variant="primary" className="my-2">
+          Continue
+        </Button>
       </Form>
     </FormContainer>
   );
