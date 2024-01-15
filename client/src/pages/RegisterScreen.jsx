@@ -58,6 +58,7 @@ const RegisterScreen = () => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            required
           ></Form.Control>
         </Form.Group>
 
@@ -67,6 +68,7 @@ const RegisterScreen = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           ></Form.Control>
         </Form.Group>
 
@@ -76,6 +78,7 @@ const RegisterScreen = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           ></Form.Control>
         </Form.Group>
 
@@ -85,6 +88,7 @@ const RegisterScreen = () => {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           ></Form.Control>
         </Form.Group>
 
