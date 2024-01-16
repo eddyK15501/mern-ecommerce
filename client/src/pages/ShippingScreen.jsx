@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveShippingAddress } from "../redux/slices/cartSlice";
 
 const ShippingScreen = () => {
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [zipCode, setZipCode] = useState("");
-  const [country, setCountry] = useState("");
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
+  const [address, setAddress] = useState(shippingAddress?.address || "");
+  const [city, setCity] = useState(shippingAddress?.city || "");
+  const [zipCode, setZipCode] = useState(shippingAddress?.zipCode || "");
+  const [country, setCountry] = useState(shippingAddress?.country || "");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const cart = useSelector((state) => state.cart);
-  const { shippingAddress } = cart;
 
   const submitHandler = (event) => {
     event.preventDefault();
