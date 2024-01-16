@@ -86,7 +86,6 @@ const ProductScreen = () => {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <Row className="d-flex align-items-center">
@@ -112,7 +111,6 @@ const ProductScreen = () => {
                     </Row>
                   </ListGroup.Item>
                 )}
-
                 <ListGroup.Item className="mx-auto">
                   <Button
                     className="btn-block"

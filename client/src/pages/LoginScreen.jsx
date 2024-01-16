@@ -43,7 +43,6 @@ const LoginScreen = () => {
   return (
     <FormContainer>
       <h1>Sign In</h1>
-
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email" className="my-3">
           <Form.Label>Email Address</Form.Label>
@@ -54,7 +53,6 @@ const LoginScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="password" className="my-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -64,7 +62,6 @@ const LoginScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Button
           type="submit"
           variant="primary"
@@ -73,10 +70,8 @@ const LoginScreen = () => {
         >
           Sign In
         </Button>
-
         {isLoading && <Loader />}
       </Form>
-
       <Row className="py-3">
         <Col>
           Don&apos;t have an account?{" "}

@@ -50,7 +50,6 @@ const RegisterScreen = () => {
   return (
     <FormContainer>
       <h1>Sign Up</h1>
-
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="name" className="my-2">
           <Form.Label>Name</Form.Label>
@@ -61,7 +60,6 @@ const RegisterScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="email" className="my-2">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
@@ -71,7 +69,6 @@ const RegisterScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="password" className="my-2">
           <Form.Label>Password</Form.Label>
           <Form.Control
@@ -81,7 +78,6 @@ const RegisterScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Form.Group controlId="confirm-password" className="my-2 mb-3">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
@@ -91,7 +87,6 @@ const RegisterScreen = () => {
             required
           ></Form.Control>
         </Form.Group>
-
         <Button
           type="submit"
           variant="primary"
@@ -100,10 +95,8 @@ const RegisterScreen = () => {
         >
           Register
         </Button>
-
         {isLoading && <Loader />}
       </Form>
-
       <Row className="py-3">
         <Col>
           Already have an account?{" "}
