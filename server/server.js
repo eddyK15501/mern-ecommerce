@@ -21,10 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 // Cookie parser middleware; Allow access to req.cookies.jwt
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("API is now running...");
-});
-
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
