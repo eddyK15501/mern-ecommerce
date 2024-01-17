@@ -17,6 +17,6 @@ router
 router.route("/myorders").get(protect, getMyOrders);
 router.route("/:id").get(protect, getOrderById);
 router.route("/:id/pay").patch(protect, updateOrderToPaid);
-router.route("/:id/deliver").patch(protect, updateOrderToDelivered);
+router.route("/:id/deliver").patch(protect, admin, updateOrderToDelivered);
 
 export default router;
