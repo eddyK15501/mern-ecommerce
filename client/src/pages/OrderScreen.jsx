@@ -1,8 +1,13 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import { toast } from "react-toastify";
 import CheckoutSteps from "../components/CheckoutSteps";
+import Message from "../components/Message";
+import Loader from "../components/Loader";
+import { useSelector, useDispatch } from "react-redux";
+import { useCreateOrderMutation } from '../redux/slices/ordersApiSlice';
+import { clearCartItems } from "../redux/slices/cartSlice";
 
 const OrderScreen = () => {
   const navigate = useNavigate();
@@ -24,7 +29,7 @@ const OrderScreen = () => {
         <Col md={4}>Column</Col>
       </Row>
     </>
-  )
+  );
 };
 
 export default OrderScreen;
