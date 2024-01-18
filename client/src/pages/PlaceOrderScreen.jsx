@@ -10,8 +10,11 @@ import { useCreateOrderMutation } from "../redux/slices/ordersApiSlice";
 import { clearCartItems } from "../redux/slices/cartSlice";
 
 const PlaceOrderScreen = () => {
-  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
   useEffect(() => {
     if (!cart.shippingAddress.address) {
@@ -21,6 +24,24 @@ const PlaceOrderScreen = () => {
     }
   }, [cart.shippingAddress.address, cart.paymentMethod, navigate]);
 
+  const placeOrderHandler = async () => {
+    try {
+      const response = await createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      }).unwrap();
+      dispatch(clearCartItems());
+      navigate(`/order/${response._id}`);
+    } catch (err) {
+      toast.error(err);
+    }
+  };
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -29,16 +50,22 @@ const PlaceOrderScreen = () => {
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
-              <p className="d-flex" style={{ gap: "0.25rem" }}>
-                <strong>Address: </strong>
-                <div style={{ display: "inline-block" }}>
+
+              <div
+                className="d-flex"
+                style={{ display: "inline-block" }}
+              >
+                <p style={{ display: "inline-block" }}>
+                  <strong>Address: </strong>
+                </p>
+                <div className="ms-2">
                   <p className="mb-0">{cart.shippingAddress.address}</p>
                   <p className="mb-0">
                     {cart.shippingAddress.city} {cart.shippingAddress.zipCode}
                   </p>
                   <p className="mb-0">{cart.shippingAddress.country}</p>
                 </div>
-              </p>
+              </div>
             </ListGroup.Item>
 
             <ListGroup.Item>
@@ -66,7 +93,7 @@ const PlaceOrderScreen = () => {
                             />
                           </Col>
                           <Col>
-                            <Link to={`/product/${item._id}`}>
+                            <Link to={`/product/${item.product}`}>
                               {item.name}
                             </Link>
                           </Col>
@@ -83,7 +110,53 @@ const PlaceOrderScreen = () => {
             </ListGroup.Item>
           </ListGroup>
         </Col>
-        <Col md={4}>Column</Col>
+        <Col md={4}>
+          <Card>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>Order Summary</h2>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Items:</Col>
+                  <Col>${cart.itemsPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Shipping:</Col>
+                  <Col>${cart.shippingPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Tax:</Col>
+                  <Col>${cart.taxPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col>Total:</Col>
+                  <Col>${cart.totalPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+              <ListGroup.Item style={{ borderBottom: "none" }}>
+                {error && <Message variant="danger">{error}</Message>}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Button
+                  type="button"
+                  className="btn-block"
+                  disabled={cart.cartItems.length === 0}
+                  onClick={placeOrderHandler}
+                >
+                  Place Order
+                </Button>
+                {isLoading && <Loader />}
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
+        </Col>
       </Row>
     </>
   );
