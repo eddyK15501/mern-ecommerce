@@ -13,7 +13,7 @@ import LoginScreen from "./pages/LoginScreen.jsx";
 import RegisterScreen from "./pages/RegisterScreen.jsx";
 import ShippingScreen from "./pages/ShippingScreen.jsx";
 import PaymentScreen from "./pages/PaymentScreen.jsx";
-import OrderScreen from './pages/OrderScreen';
+import PlaceOrderScreen from './pages/PlaceOrderScreen';
 
 import PrivateRoute from "./components/PrivateRoute.jsx";
 
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/placeorder",
-        element: <PrivateRoute component={OrderScreen} />
+        element: <PrivateRoute component={PlaceOrderScreen} />
       },
     ],
   },
