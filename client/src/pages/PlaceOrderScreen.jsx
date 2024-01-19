@@ -51,10 +51,7 @@ const PlaceOrderScreen = () => {
             <ListGroup.Item>
               <h2>Shipping</h2>
 
-              <div
-                className="d-flex"
-                style={{ display: "inline-block" }}
-              >
+              <div className="d-flex" style={{ display: "inline-block" }}>
                 <p style={{ display: "inline-block" }}>
                   <strong>Address: </strong>
                 </p>
@@ -111,7 +108,7 @@ const PlaceOrderScreen = () => {
           </ListGroup>
         </Col>
         <Col md={4}>
-          <Card>
+          <Card style={{ boxShadow: "0 4px 5px -2px rgba(0, 0, 0, 0.2)" }}>
             <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
@@ -141,7 +138,9 @@ const PlaceOrderScreen = () => {
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item style={{ borderBottom: "none" }}>
-                {error && <Message variant="danger">{error.data.message}</Message>}
+                {error && (
+                  <Message variant="danger">{error.data.message}</Message>
+                )}
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button

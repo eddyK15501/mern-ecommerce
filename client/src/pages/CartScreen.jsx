@@ -29,7 +29,7 @@ const CartScreen = () => {
   };
 
   const checkoutHandler = () => {
-    navigate('/login?redirect=/shipping');
+    navigate("/login?redirect=/shipping");
   };
 
   return (
@@ -91,7 +91,7 @@ const CartScreen = () => {
         )}
       </Col>
       <Col md={4}>
-        <Card>
+        <Card style={{ boxShadow: "0 4px 5px -2px rgba(0, 0, 0, 0.2)" }}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <h2 className="text-center">
