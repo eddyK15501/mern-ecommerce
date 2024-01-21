@@ -62,6 +62,11 @@ const OrderScreen = () => {
     }
   }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);
 
+  function onApproveTest() {}
+  function onApprove() {}
+  function createOrder() {}
+  function onError() {}
+
   return (
     <>
       {isLoading ? (
@@ -159,7 +164,31 @@ const OrderScreen = () => {
                       <Col>${order.totalPrice}</Col>
                     </Row>
                   </ListGroup.Item>
-                  {/* PAY ORDER PLACEHOLDER */}
+                  {!order.isPaid && (
+                    <ListGroup.Item>
+                      {loadingPay && <Loader />}
+                      {isPending ? (
+                        <Loader />
+                      ) : (
+                        <div>
+                          <Button
+                            onClick={onApproveTest}
+                            style={{ marginBottom: "10px" }}
+                          >
+                            Test Pay Order
+                          </Button>
+                          <div>
+                            <PayPalButtons
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                              onError={onError}
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </ListGroup.Item>
+                  )}
+
                   {/* MARK AS DELIVERED PLACEHOLDER */}
                 </ListGroup>
               </Card>
