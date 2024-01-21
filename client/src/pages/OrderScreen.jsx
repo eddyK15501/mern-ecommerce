@@ -62,10 +62,43 @@ const OrderScreen = () => {
     }
   }, [order, paypal, paypalDispatch, loadingPayPal, errorPayPal]);
 
-  function onApproveTest() {}
-  function onApprove() {}
-  function createOrder() {}
-  function onError() {}
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        await payOrder({ orderId, details });
+        refetch();
+        toast.success("Payment successful");
+      } catch (err) {
+        toast.error(err?.data?.message || err.message);
+      }
+    });
+  }
+
+  async function onApproveTest() {
+    await payOrder({ orderId, details: { payer: {} } });
+    refetch();
+    toast.success("Payment successful");
+  }
+
+  function onError(err) {
+    toast.error(err.message);
+  }
+
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: order.totalPrice,
+            },
+          },
+        ],
+      })
+      .then((orderId) => {
+        return orderId;
+      });
+  }
 
   return (
     <>
@@ -144,23 +177,23 @@ const OrderScreen = () => {
               <Card style={{ boxShadow: "0 4px 5px -2px rgba(0, 0, 0, 0.2)" }}>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
-                    <h2>Order Summary</h2>
+                    <h2 className="text-center">Order Summary</h2>
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <Row>
-                      <Col>Items</Col>
+                      <Col>Items:</Col>
                       <Col>${order.itemsPrice}</Col>
                     </Row>
                     <Row>
-                      <Col>Shipping</Col>
+                      <Col>Shipping:</Col>
                       <Col>${order.shippingPrice}</Col>
                     </Row>
                     <Row>
-                      <Col>Tax</Col>
+                      <Col>Tax:</Col>
                       <Col>${order.taxPrice}</Col>
                     </Row>
                     <Row>
-                      <Col>Total</Col>
+                      <Col>Total:</Col>
                       <Col>${order.totalPrice}</Col>
                     </Row>
                   </ListGroup.Item>
@@ -174,6 +207,7 @@ const OrderScreen = () => {
                           <Button
                             onClick={onApproveTest}
                             style={{ marginBottom: "10px" }}
+                            className="d-block mx-auto"
                           >
                             Test Pay Order
                           </Button>

@@ -72,7 +72,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
   if (order) {
     order.isPaid = true;
-    order.paidAt = Date.now();
+    order.paidAt = new Date().toLocaleDateString();
     order.paymentResult = {
       // paymentResult object coming from PayPal
       id: req.body.id,

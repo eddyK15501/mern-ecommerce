@@ -111,30 +111,30 @@ const PlaceOrderScreen = () => {
           <Card style={{ boxShadow: "0 4px 5px -2px rgba(0, 0, 0, 0.2)" }}>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <h2>Order Summary</h2>
+                <h2 className="text-center">Order Summary</h2>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Items:</Col>
-                  <Col>${cart.itemsPrice}</Col>
+                  <Col className="ms-2">Items:</Col>
+                  <Col className="text-end me-2">${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping:</Col>
-                  <Col>${cart.shippingPrice}</Col>
+                  <Col className="ms-2">Shipping:</Col>
+                  <Col className="text-end me-2">${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Tax:</Col>
-                  <Col>${cart.taxPrice}</Col>
+                  <Col className="ms-2">Tax:</Col>
+                  <Col className="text-end me-2">${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Total:</Col>
-                  <Col>${cart.totalPrice}</Col>
+                  <Col className="ms-2">Total:</Col>
+                  <Col className="text-end me-2">${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item style={{ borderBottom: "none" }}>
@@ -142,7 +142,7 @@ const PlaceOrderScreen = () => {
                   <Message variant="danger">{error.data.message}</Message>
                 )}
               </ListGroup.Item>
-              <ListGroup.Item>
+              <ListGroup.Item className="d-flex justify-content-center">
                 <Button
                   type="button"
                   className="btn-block"
