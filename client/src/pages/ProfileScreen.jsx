@@ -18,23 +18,42 @@ const ProfileScreen = () => {
 
   const { userInfo } = useSelector((state) => state.auth);
 
+  const [updateProfile, { isLoading: loadingUpdateProfile }] =
+    useProfileMutation();
+
   useEffect(() => {
     if (userInfo) {
       setName(userInfo.name);
       setEmail(userInfo.email);
     }
-  }, [userInfo.name, userInfo.email]);
+  }, [userInfo, userInfo.name, userInfo.email]);
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log("submit handled");
+
+    if (password !== confirmPassword) {
+      toast.error("Password do not match");
+    } else {
+      try {
+        const response = await updateProfile({
+          _id: userInfo._id,
+          name,
+          email,
+          password,
+        }).unwrap();
+        dispatch(setCredentials(response));
+        toast.success("Profile updated successfully");
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
   };
 
   return (
     <Row>
       <Col md={3}>
         <h2>User Profile</h2>
-        <Form>
+        <Form onSubmit={submitHandler}>
           <Form.Group controlId="name" className="mt-3 mb-1">
             <Form.Label>Name</Form.Label>
             <Form.Control
@@ -73,9 +92,10 @@ const ProfileScreen = () => {
           </Form.Group>
           <div className="d-flex justify-content-center">
             <Button type="submit" variant="primary" className="mt-3 mb-1">
-                Update Profile
+              Update Profile
             </Button>
           </div>
+          {loadingUpdateProfile && <Loader />}
         </Form>
       </Col>
       <Col md={9}>Column</Col>
