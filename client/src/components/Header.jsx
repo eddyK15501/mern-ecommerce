@@ -46,8 +46,9 @@ const Header = () => {
                   title="Menu"
                   id="menu"
                   drop="down-centered"
+                  menuVariant="dark"
                 >
-                  <LinkContainer to="/profile">
+                  <LinkContainer to="/profile" activeClassName="">
                     <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                   </LinkContainer>
                   <NavDropdown.Item onClick={logoutHandler}>
@@ -55,14 +56,32 @@ const Header = () => {
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer className="me-2" to="/login">
+                <LinkContainer className="me-2" to="/login" activeClassName="">
                   <Nav.Link href="/login">
                     <FaUser /> Sign In
                   </Nav.Link>
                 </LinkContainer>
               )}
-
-              <LinkContainer to="/cart">
+              {/* If logged in as admin, then add dropdown to Navbar */}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown
+                  title="Admin"
+                  id="adminmenu"
+                  className="me-2"
+                  menuVariant="dark"
+                >
+                  <LinkContainer to="/admin/productlist" activeClassName="">
+                    <NavDropdown.Item>Products</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/userlist" activeClassName="">
+                    <NavDropdown.Item>Users</NavDropdown.Item>
+                  </LinkContainer>
+                  <LinkContainer to="/admin/orderlist" activeClassName="">
+                    <NavDropdown.Item>Orders</NavDropdown.Item>
+                  </LinkContainer>
+                </NavDropdown>
+              )}
+              <LinkContainer to="/cart" activeClassName="">
                 <Nav.Link>
                   <FaShoppingCart /> Cart
                   {cartItems.length > 0 && (

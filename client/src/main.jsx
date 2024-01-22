@@ -17,8 +17,10 @@ import PaymentScreen from "./pages/PaymentScreen.jsx";
 import PlaceOrderScreen from './pages/PlaceOrderScreen';
 import OrderScreen from './pages/OrderScreen';
 import ProfileScreen from "./pages/ProfileScreen.jsx";
+import OrderListScreen from "./pages/admin/OrderListScreen.jsx";
 
 import PrivateRoute from "./components/PrivateRoute.jsx";
+import AdminRoute from './components/AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -65,6 +67,11 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <PrivateRoute component={ProfileScreen} />
+      },
+      // Admin routes for admin user only
+      {
+        path: '/admin/orderlist',
+        element: <AdminRoute component={OrderListScreen} />
       }
     ],
   },
