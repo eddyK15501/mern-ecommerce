@@ -18,6 +18,7 @@ import PlaceOrderScreen from './pages/PlaceOrderScreen';
 import OrderScreen from './pages/OrderScreen';
 import ProfileScreen from "./pages/ProfileScreen.jsx";
 import OrderListScreen from "./pages/admin/OrderListScreen.jsx";
+import ProductListScreen from "./pages/admin/ProductListScreen.jsx";
 
 import PrivateRoute from "./components/PrivateRoute.jsx";
 import AdminRoute from './components/AdminRoute';
@@ -72,7 +73,11 @@ const router = createBrowserRouter([
       {
         path: '/admin/orderlist',
         element: <AdminRoute component={OrderListScreen} />
-      }
+      },
+      {
+        path: '/admin/productlist',
+        element: <AdminRoute component={ProductListScreen} />
+      },
     ],
   },
 ]);
