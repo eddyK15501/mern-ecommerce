@@ -72,7 +72,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
   if (order) {
     order.isPaid = true;
-    order.paidAt = new Date().toLocaleDateString();
+    order.paidAt = Date.now();
     order.paymentResult = {
       // paymentResult object coming from PayPal
       id: req.body.id,
@@ -93,7 +93,19 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @route   PATCH /api/orders/:id/deliver
 // @access  Private/Admin
 const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  res.send("update order to delivered");
+  const order = await Order.findById(req.params.id);
+
+  if (order) {
+    order.isDelivered = true;
+    order.deliveredAt = Date.now();
+
+    const updatedOrder = await order.save();
+
+    res.status(200).json(updatedOrder);
+  } else {
+    res.status(404);
+    throw new Error('Order not found');
+  }
 });
 
 // @desc    Get all orders
