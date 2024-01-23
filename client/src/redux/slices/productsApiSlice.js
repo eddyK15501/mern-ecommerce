@@ -13,11 +13,22 @@ export const productsApiSlice = apiSlice.injectEndpoints({
       query: (productId) => ({
         url: `${PRODUCTS_URL}/${productId}`,
       }),
+      keepUnusedDataFor: 5,
+    }),
+    createProduct: builder.mutation({
+      query: () => ({
+        url: PRODUCTS_URL,
+        method: "POST",
+      }),
+      invalidatesTags: ["Product"],
     }),
   }),
 });
 
 // Add "use" to the front of the builder endpoint that is being exported.
 // Along with whether it is a query or mutation, at the end of it.
-export const { useGetProductsQuery, useGetProductDetailsQuery } =
-  productsApiSlice;
+export const {
+  useGetProductsQuery,
+  useGetProductDetailsQuery,
+  useCreateProductMutation,
+} = productsApiSlice;
