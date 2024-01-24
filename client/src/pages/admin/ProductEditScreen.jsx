@@ -15,11 +15,11 @@ const ProductEditScreen = () => {
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState(0);
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
 
   const {
     data: product,
@@ -37,19 +37,122 @@ const ProductEditScreen = () => {
     if (product) {
       setName(product.name);
       setPrice(product.price);
-      setDescription(product.description);
       setImage(product.image);
       setBrand(product.brand);
-      setCategory(product.category);
       setCountInStock(product.countInStock);
+      setCategory(product.category);
+      setDescription(product.description);
     }
   }, [product]);
+
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const updatedProduct = {
+      productId,
+      name,
+      price,
+      image,
+      brand,
+      category,
+      countInStock,
+      description,
+    };
+    const result = await updateProduct(updatedProduct);
+
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      toast.success("Product updated");
+      navigate("/admin/productlist");
+    }
+  };
 
   return (
     <>
       <Link to="/admin/productlist" className="btn btn-light my-3">
         Go Back
       </Link>
+      <FormContainer>
+        <h1 className="mb-3">Edit Product</h1>
+        {loadingUpdate && <Loader />}
+        {isLoading ? (
+          <Loader />
+        ) : error ? (
+          <Message variant="danger">{error}</Message>
+        ) : (
+          <Form onSubmit={onFormSubmit}>
+            <Form.Group controlId="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="price" className="mt-2">
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter price"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+
+            {/* IMAGE INPUT PLACEHOLDER */}
+
+            <Form.Group controlId="brand" className="mt-2">
+              <Form.Label>Brand</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="countInStock" className="mt-2">
+              <Form.Label>Count In Stock</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter count in stock"
+                value={countInStock}
+                onChange={(e) => setCountInStock(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="category" className="mt-2">
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+            <Form.Group controlId="description" className="mt-2">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                style={{ color: "grey" }}
+              ></Form.Control>
+            </Form.Group>
+            <div className="d-flex justify-content-center">
+              <Button type="submit" variant="primary" className="my-5">
+                Update Product
+              </Button>
+            </div>
+          </Form>
+        )}
+      </FormContainer>
     </>
   );
 };
