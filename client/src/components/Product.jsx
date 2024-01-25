@@ -10,7 +10,11 @@ const Product = (props) => {
       style={{ boxShadow: "0 4px 5px -2px rgba(0, 0, 0, 0.2)" }}
     >
       <Link to={`/product/${props._id}`}>
-        <Card.Img src={props.image} variant="top" style={{ height: "240px"}} />
+        <Card.Img
+          src={props.image}
+          variant="top"
+          style={{ height: "240px", objectFit: "contain" }}
+        />
       </Link>
 
       <Card.Body>
