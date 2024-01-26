@@ -3,18 +3,33 @@ import { Table, Button } from "react-bootstrap";
 import { FaTimes, FaTrash, FaEdit, FaCheck } from "react-icons/fa";
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
-import { useGetUsersQuery } from "../../redux/slices/usersApiSlice";
+import { toast } from "react-toastify";
+import {
+  useGetUsersQuery,
+  useDeleteUserMutation,
+} from "../../redux/slices/usersApiSlice";
 
 const UserListScreen = () => {
   const { data: users, isLoading, error, refetch } = useGetUsersQuery();
 
-  const deleteUser = (id) => {
-    console.log("delete user");
+  const [deleteUser, { isLoading: loadingDelete }] = useDeleteUserMutation();
+
+  const deleteHandler = async (id) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await deleteUser(id);
+        toast.success("User deleted");
+        refetch();
+      } catch (err) {
+        toast.error(err?.data?.message || err.error);
+      }
+    }
   };
 
   return (
     <>
       <h1>Users</h1>
+      {loadingDelete && <Loader />}
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -55,7 +70,7 @@ const UserListScreen = () => {
                     <Button
                       variant="danger"
                       className="btn-sm ms-4"
-                      onClick={() => deleteUser(user._id)}
+                      onClick={() => deleteHandler(user._id)}
                     >
                       <FaTrash style={{ color: "#fff" }} />
                     </Button>
