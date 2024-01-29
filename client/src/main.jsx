@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store.js";
 import App from "./App.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./assets/styles/index.css";
+import "./assets/styles/index.scss";
 import HomeScreen from "./pages/HomeScreen.jsx";
 import ProductScreen from "./pages/ProductScreen.jsx";
 import CartScreen from "./pages/CartScreen.jsx";
@@ -83,6 +83,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin/productlist',
+        element: <AdminRoute component={ProductListScreen} />
+      },
+      {
+        path: '/admin/productlist/:pageNumber',
         element: <AdminRoute component={ProductListScreen} />
       },
       {

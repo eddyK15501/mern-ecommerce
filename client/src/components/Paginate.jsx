@@ -3,7 +3,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const Paginate = ({ pages, page, isAdmin = false }) => {
   return (
-    <>
+    <div className="mt-5 d-flex justify-content-center">
       {pages > 1 && (
         <Pagination>
           {[...Array(pages).keys()].map((x) => (
@@ -16,7 +16,7 @@ const Paginate = ({ pages, page, isAdmin = false }) => {
           ))}
         </Pagination>
       )}
-    </>
+    </div>
   );
 };
 

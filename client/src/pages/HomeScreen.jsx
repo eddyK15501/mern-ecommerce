@@ -30,9 +30,7 @@ const HomeScreen = () => {
               );
             })}
           </Row>
-          <div className="mt-5 d-flex justify-content-center">
-            <Paginate pages={data.pages} page={data.page} />
-          </div>
+          <Paginate pages={data.pages} page={data.page} />
         </>
       )}
     </>
