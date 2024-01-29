@@ -2,6 +2,7 @@ import { Row, Col } from "react-bootstrap";
 import Product from "../components/Product";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
+import Paginate from "../components/Paginate";
 import { useParams } from 'react-router-dom';
 import { useGetProductsQuery } from "../redux/slices/productsApiSlice";
 
@@ -29,6 +30,9 @@ const HomeScreen = () => {
               );
             })}
           </Row>
+          <div className="mt-5 d-flex justify-content-center">
+            <Paginate pages={data.pages} page={data.page} />
+          </div>
         </>
       )}
     </>
