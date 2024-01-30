@@ -4,32 +4,36 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const { keyword: keywordParam } = useParams();
-  
+
   const [keyword, setKeyword] = useState(keywordParam || '');
 
   const navigate = useNavigate();
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    
+
     if (keyword.trim()) {
-        navigate(`/search/${keyword}`)
+      navigate(`/search/${keyword}`);
     } else {
-        navigate('/');
+      navigate('/');
     }
   };
 
   return (
-    <Form onSubmit={onFormSubmit} className='d-flex'>
+    <Form onSubmit={onFormSubmit} className='d-flex me-md-3'>
       <Form.Control
         type='text'
         name='q'
         placeholder='Search Products...'
-        className='mr-sm-2 ml-sm-5'
+        className='me-sm-2 ms-sm-5 form-control-sm'
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       ></Form.Control>
-      <Button type='submit' variant='outline-success' className='p-2 mx-2'>
+      <Button
+        type='submit'
+        variant='outline-primary'
+        className='p-2 mx-2 btn-sm'
+      >
         Search
       </Button>
     </Form>
