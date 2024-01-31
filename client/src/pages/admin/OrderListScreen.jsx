@@ -8,6 +8,7 @@ import { useGetOrdersQuery } from "../../redux/slices/ordersApiSlice";
 const OrderListScreen = () => {
   const { data: orders, isLoading, error } = useGetOrdersQuery();
 
+  console.log(orders)
   return (
     <>
       <h1>Orders</h1>
@@ -33,7 +34,7 @@ const OrderListScreen = () => {
               return (
                 <tr key={order._id}>
                   <td>{order._id}</td>
-                  <td>{order.user.name}</td>
+                  <td>{order.user?.name}</td>
                   <td>{order.createdAt.substring(0, 10)}</td>
                   <td>{order.totalPrice}</td>
                   <td>
