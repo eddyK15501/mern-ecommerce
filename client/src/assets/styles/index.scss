@@ -1,3 +1,6 @@
+$custom-nav-bg: #080e1a;
+$custom-carousel-bg: #192841;
+
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 $pagination-color: $blue-900;
@@ -10,6 +13,10 @@ $pagination-active-border-color: $gray-300;
 
 main {
   min-height: 80vh;
+}
+
+.custom-nav-bg {
+  background-color: $custom-nav-bg;
 }
   
 .rating span {
@@ -51,6 +58,10 @@ table th {
   
 .review button {
   margin-top: 10px;
+}
+
+.carousel-bg {
+  background-color: $custom-carousel-bg;
 }
   
 .carousel-caption {

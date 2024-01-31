@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import {
   Form,
@@ -13,6 +13,7 @@ import Rating from "../components/Rating";
 import Loader from "../components/Loader";
 import Message from "../components/Message";
 import { toast } from "react-toastify";
+import { scrollToTop } from "../utils/scrollToTop";
 import {
   useGetProductDetailsQuery,
   useCreateReviewMutation,
@@ -41,6 +42,10 @@ const ProductScreen = () => {
     useCreateReviewMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    scrollToTop();
+  }, [])
 
   const addToCartHandler = () => {
     dispatch(addToCart({ ...product, qty }));

@@ -32,7 +32,7 @@ const Search = () => {
       ></Form.Control>
       <Button
         type='submit'
-        variant='outline-primary'
+        variant='outline-light'
         className='p-2 mx-2 btn-sm'
       >
         Search
