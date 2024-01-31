@@ -11,7 +11,7 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: 'Welcome to ProductShop',
+  title: 'Welcome to ProductStore',
   description: "Best prices and deals you'll find online",
   keywords: 'electronics, gaming, tech products, phones',
 };

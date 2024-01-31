@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 import { useGetProductsQuery } from '../redux/slices/productsApiSlice';
 
 const HomeScreen = () => {
@@ -23,6 +24,7 @@ const HomeScreen = () => {
       ) : (
         <ProductCarousel />
       )}
+      <Meta title='Welcome to ProductStore' /> 
       <h1>Latest Products</h1>
       {isLoading ? (
         <Loader />
