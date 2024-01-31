@@ -7,11 +7,13 @@ In the backend, Express.js server is integrated with MongoDB as a database. Mong
 
 `PayPal Sandbox` integrated for a payment system. Click here for an [account](https://developer.paypal.com/home) to approve payments.
 
+```
 After the order is placed and paid for, the admin user must approve the delivery of the order. Admin user also has the ability to create, edit, and delete products.
 
 To access the Admin User:
 - email: admin@email.com
 - password: qwer1234
+```
 
 ## Link to the Deployed Application
 * [Click here!](https://productstore-i0qh.onrender.com/)
